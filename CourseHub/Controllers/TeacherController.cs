@@ -109,7 +109,7 @@ namespace CourseHub.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var teacher = await _context.Teachers.FindAsync(id);
-            if (teacher == null) return NotFound();}
+            if (teacher == null) return NotFound();
 
             var model = new TeacherEditViewModel
             {
