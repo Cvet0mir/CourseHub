@@ -2,7 +2,7 @@ using System.Diagnostics;
 using CourseHub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Database;
-using Database.Models;
+using Database.Entities;
 using CourseHub.ViewModels.Course;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -43,7 +43,7 @@ namespace CourseHub.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CourseDataViewModel model)
+        public async Task<IActionResult> Create(CourseCreateViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -87,7 +87,7 @@ namespace CourseHub.Controllers
             var course = await _context.Courses.FindAsync(id);
             if (course == null) return NotFound();
 
-            var model = new CourseDataViewModel
+            var model = new CourseEditViewModel
             {
                 Id = course.Id,
                 Name = course.Name,
@@ -101,7 +101,7 @@ namespace CourseHub.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, CourseDataViewModel model)
+        public async Task<IActionResult> Edit(int id, CourseEditViewModel model)
         {
             if (id != model.Id) return NotFound();
             if (!ModelState.IsValid) return View(model);

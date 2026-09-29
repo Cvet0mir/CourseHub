@@ -2,10 +2,10 @@ using System.Diagnostics;
 using CourseHub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Database;
-using Database.Models;
 using CourseHub.ViewModels.Teacher;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Database.Entities;
 
 
 namespace CourseHub.Controllers

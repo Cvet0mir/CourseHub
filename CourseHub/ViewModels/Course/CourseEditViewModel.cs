@@ -24,5 +24,8 @@ namespace CourseHub.ViewModels.Course
 
         [StringLength(50, MinimumLength = 2, ErrorMessage = "The Difficulty must be between 2 and 50!")]
         public string Difficulty { get; set; }
+
+        [Required(ErrorMessage = "The Teacher Id is required!")]
+        public int TeacherId { get; set; }
     }
 }

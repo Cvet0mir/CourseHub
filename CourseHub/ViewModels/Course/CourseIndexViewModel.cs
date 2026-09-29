@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseHub.ViewModels.Course
 {
-    public class CourseDataViewModel
+    public class CourseIndexViewModel
     {
         public int Id { get; set; }
 
