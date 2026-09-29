@@ -1,0 +1,10 @@
+﻿@model CourseHub.ViewModels.Teacher.TeacherCreateViewModel
+
+<h1>Teacher Details</h1>
+
+<div>
+    <h2>@Model.FirstName @Model.LastName</h2>
+    <p><b>Main Subject:</b> @Model.MainSubject</p>
+    <p><b>Years of Experience:</b> @Model.YearsExperience</p>
+    <p><b>Age:</b> @(Model.Age == null ? "N/A" : Model.Age)</p>
+</div>

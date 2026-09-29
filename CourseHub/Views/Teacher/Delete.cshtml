@@ -1,0 +1,12 @@
+﻿
+@model CourseHub.ViewModels.Teacher.TeacherDeleteViewModel
+
+<h1>Delete Teacher</h1>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="FullName" />
+
+    <p>Are you sure you want to delete this teacher?</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>

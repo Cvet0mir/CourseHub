@@ -1,0 +1,40 @@
+﻿
+@model CourseHub.ViewModels.Teacher.TeacherEditViewModel
+
+<h1>Edit Teacher</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MainSubject"></label>
+        <input asp-for="MainSubject" class="form-control" />
+        <span asp-validation-for="MainSubject" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="YearsExperience"></label>
+        <input asp-for="YearsExperience" class="form-control" />
+        <span asp-validation-for="YearsExperience" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+
+</form>
