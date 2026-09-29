@@ -39,7 +39,7 @@
         <select asp-for="TeacherId" class="form-control">
             @foreach (var teacher in ViewBag.Teachers)
             {
-                <option value="@teacher.Id">@teacher.FullName</option>
+                <option value="@teacher.Id">@teacher.FirstName @teacher.LastName</option>
             }
         </select>
         <span asp-validation-for="TeacherId" class="text-danger"></span>

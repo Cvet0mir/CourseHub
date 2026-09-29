@@ -19,7 +19,7 @@ namespace CourseHub.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -27,6 +27,7 @@ namespace CourseHub.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TeacherCreateViewModel model)
         {
+            Console.WriteLine("Hello");
             if (!ModelState.IsValid) return View(model);
 
             var teacher = new Teacher
@@ -38,7 +39,7 @@ namespace CourseHub.Controllers
                 Address = model.Address,
                 Age = model.Age
             };
-            _context.Teachers.Add(teacher);
+            await _context.Teachers.AddAsync(teacher);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -95,14 +96,39 @@ namespace CourseHub.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(TeacherDeleteViewModel teacherDeleteModel)
         {
-            var teacher = await _context.Teachers.FindAsync(id);
+            Console.WriteLine("Hello 1");
+            var teacher = await _context.Teachers.FindAsync(teacherDeleteModel.Id);
             if (teacher == null) return NotFound();
+            Console.WriteLine("Hello 2");
+
+            //var teacherDeleteModel = new TeacherDeleteViewModel
+            //{
+            //    Id = teacher.Id,
+            //    FullName = teacher.FirstName + " " + teacher.LastName
+            //};
+            //if (teacher.Courses.Count == 0)
+            //{
+            //    Console.WriteLine("Hello 3");
+            //    _context.Teachers.Remove(teacher);
+            //    await _context.SaveChangesAsync();
+            //    Console.WriteLine("Hello 4");
+            //    return RedirectToAction(nameof(Index));
+            //}
+
+            bool hasAssignedCourses = await _context.Courses.AnyAsync(c => c.TeacherId == teacher.Id);
+            ViewBag.ErrorMsg = "";
+
+            Console.WriteLine("Hello 5");
+            if (hasAssignedCourses)
+            {
+                ViewBag.ErrorMsg = "Cannot delete teacher with assigned courses.";
+                return View(teacherDeleteModel);
+            }
 
             _context.Teachers.Remove(teacher);
             await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
         }
 

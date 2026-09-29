@@ -10,6 +10,6 @@
 
         public int YearsExperience { get; set; }
 
-        public int Age { get; set; }
+        public int? Age { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace CourseHub.Controllers
         {
             var courses = await _context.Courses
                 .Include(c => c.Teacher)
-                .Select(c => new CourseDataViewModel
+                .Select(c => new CourseIndexViewModel
                 {
                     Id = c.Id,
                     Name = c.Name,
@@ -100,6 +100,10 @@ namespace CourseHub.Controllers
                 Difficulty = course.Difficulty,
                 TeacherId = course.TeacherId
             };
+
+            var teachers = await _context.Teachers.ToListAsync();
+            ViewBag.Teachers = teachers;
+
             return View(model);
         }
 
@@ -126,16 +130,10 @@ namespace CourseHub.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var course = await _context.Courses
-                .Include(c => c.Teacher)
-                .Select(c => new CourseDataViewModel
+                .Select(c => new CourseDeleteViewModel
                 {
                     Id = c.Id,
-                    Name = c.Name,
-                    Subject = c.Subject,
-                    StartDate = c.StartDate,
-                    EndDate = c.EndDate,
-                    Difficulty = c.Difficulty,
-                    TeacherFullName = c.Teacher.FirstName + " " + c.Teacher.LastName
+                    Name = c.Name
                 })
                 .FirstOrDefaultAsync(c => c.Id == id);
             if (course == null) return NotFound();
@@ -144,7 +142,7 @@ namespace CourseHub.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id, string fullName)
         {
             var course = await _context.Courses.FindAsync(id);
             if (course == null) return NotFound();

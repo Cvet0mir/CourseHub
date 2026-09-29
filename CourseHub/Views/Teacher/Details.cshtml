@@ -1,12 +1,12 @@
-﻿@model CourseHub.ViewModels.Teacher.TeacherCreateViewModel
+﻿@model CourseHub.ViewModels.Teacher.TeacherDataViewModel
 
 <h1>Teacher Details</h1>
 
 <div>
-    <h2>@Model.FirstName @Model.LastName</h2>
+    <h2>@Model.FullName</h2>
     <p><b>Main Subject:</b> @Model.MainSubject</p>
     <p><b>Years of Experience:</b> @Model.YearsExperience</p>
-    <p><b>Age:</b> @(Model.Age == null ? "N/A" : Model.Age)</p>
+    <p><b>Age:</b> @(Model.Age.HasValue ? Model.Age.ToString() : "N/A")</p>
 </div>
 
 <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>

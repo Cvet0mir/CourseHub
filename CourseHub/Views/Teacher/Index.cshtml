@@ -5,7 +5,7 @@
 
 <h1>Teachers List</h1>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(m => m.FullName)</th>
@@ -22,7 +22,7 @@
                 <td>@teacher.FullName</td>
                 <td>@teacher.MainSubject</td>
                 <td>@teacher.YearsExperience</td>
-                @if (teacher.Age == null)
+                @if (!teacher.Age.HasValue)
                 {
                     <td>N/A</td>
                 }
@@ -37,6 +37,7 @@
                 </td>
             </tr>
         }
+    </tbody>
 </table>
 
 <a asp-action="Create" class="btn btn-primary">Create New Teacher</a>
