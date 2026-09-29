@@ -39,6 +39,9 @@ namespace CourseHub.Controllers
 
         public async Task<IActionResult> Create()
         {
+            var teachers = await _context.Teachers.ToListAsync();
+            ViewBag.Teachers = teachers;
+
             return View();
         }
 

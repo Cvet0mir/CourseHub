@@ -1,0 +1,13 @@
+﻿
+@model CourseHub.ViewModels.Course.CourseDataViewModel
+
+<h1>Course Details</h1>
+
+<div>
+    <h2>@Model.Name</h2>
+    <p><b>Subject:</b> @Model.Subject</p>
+    <p><b>Start Date:</b> @Model.StartDate.ToShortDateString()</p>
+    <p><b>End Date:</b> @Model.EndDate.ToShortDateString()</p>
+    <p><b>Difficulty:</b> @Model.Difficulty</p>
+    <p><b>Teacher:</b> @Model.TeacherFullName</p>
+</div>
